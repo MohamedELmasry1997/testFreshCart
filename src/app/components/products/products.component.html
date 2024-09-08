@@ -1,0 +1,99 @@
+
+
+<!-- static slider -->
+
+<section>
+    <div class="row g-0 my-3">
+        <div class="col-md-10">
+            <div>
+
+                <owl-carousel-o [options]="customOptionsMain">
+                    <ng-template carouselSlide>
+                        <img src="./assets/images/slider-image-3.jpeg" height="350px" class="w-100" alt="">
+                    </ng-template>  
+                    <ng-template carouselSlide>
+                        <img src="./assets/images/slider-2.jpeg" height="350px" class="w-100" alt="">
+                    </ng-template>  
+                    <ng-template carouselSlide>
+                        <img src="./assets/images/slider-image-1.jpeg" height="350px" class="w-100" alt="">
+                    </ng-template>  
+                    <ng-template carouselSlide>
+                        <img src="./assets/images/adidas.jpg" height="350px" class="w-100" alt="">
+                    </ng-template>  
+                    <ng-template carouselSlide>
+                        <img src="./assets/images/banner_luxurypromojul23_1920_1.jpg" height="350px" class="w-100" alt="">
+                    </ng-template>
+                    <ng-template carouselSlide>
+                        <img src="./assets/images/zara-bayshore-shopping-centre-en.webp" height="350px" class="w-100" alt="">
+                    </ng-template>
+                </owl-carousel-o>
+
+
+
+                
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div>
+                <img src="./assets/images/slider-2.jpeg" height="175px" class="w-100" alt="">
+                <img src="./assets/images/slider-image-1.jpeg" height="175px" class="w-100" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- static slider end -->
+
+
+<!-- categories -->
+<!-- dynamic slider start -->
+
+
+ 
+
+
+
+<!-- dynamic slider end -->
+
+<!-- products -->
+<!-- Home content -->
+<section>
+    <div class="container">
+        <div class="row g-3 py-5">
+            @for (p of productList  ; track p._id) {
+
+                <div class="col-md-6 col-lg-4 col-xl-2 rounded ">
+
+                <div class="product p-2 cr" >
+
+                    <div [routerLink]="['/details' , p._id]">
+                        <img [src]="p.imageCover"  class="w-100" [alt]="p.title">
+
+                    <h4 class="text-main fs-4">{{p.category.name}}</h4>
+                    
+                    <h4 class="h6">{{ p.title.split(' ' , 2).join(' ') }}</h4>
+
+                    <div class="d-flex justify-content-between align-items-center py-2">
+                        <span>{{p.price}} EGP</span>
+
+                        <!-- rating star -->
+                        <div>
+                            <span><i class="fas fa-star rating-color"></i></span>
+                            <span>{{p.ratingsAverage}}</span>
+                        </div>
+                    </div>
+                    </div>
+
+                    <button class="btn-main w-100" (click)="addCart(p._id)">Add to cart</button>
+                </div>
+            </div>
+            }
+            @empty {
+                <app-loader></app-loader>
+            }
+            
+        </div>
+    </div>
+
+    
+</section>

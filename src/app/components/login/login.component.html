@@ -1,0 +1,70 @@
+<section>
+  <div class="w-75 mx-auto">
+    <h1 class="text-main mt-3 p-3">login Now :</h1>
+
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="showData()"
+      class="mx-auto container py-3"
+    >
+      <!-- input email start -->
+      <div class="mx-3">
+        <label class="px-2">email:</label>
+        <input
+          formControlName="email"
+          type="email"
+          class="form-control w-100 rounded-5"
+        />
+
+        @if ( loginForm.get('email')?.errors && loginForm.get('email')?.touched
+        ==true) {
+        <div class="alert alert-danger w-100 rounded">
+          @if( loginForm.get('email')?.getError('required')){
+          <p class="mt-0">Email is Required</p>
+          } @else if (loginForm.get('email')?.getError('email')) {
+          <p class="mt-0">please enter a valid email</p>
+          }
+        </div>
+        }
+      </div>
+      <!-- input email end -->
+
+      <!-- input password start -->
+      <div class="mx-3">
+        <label class="px-2">password:</label>
+        <input
+          formControlName="password"
+          type="password"
+          class="form-control w-100 rounded-5"
+        />
+
+        @if ( loginForm.get('password')?.errors &&
+        loginForm.get('password')?.touched ==true) {
+        <div class="alert alert-danger w-100 rounded">
+          @if( loginForm.get('password')?.getError('required')){
+          <p class="mt-0">Password is Required</p>
+          } @else if (loginForm.get('password')?.getError('pattern')) {
+          <p class="mt-0">please enter a valid password</p>
+          }
+        </div>
+        }
+      </div>
+      <!-- input password end -->
+
+      <div class="d-flex align-items-center justify-content-end gap-3">
+        <a routerLink="/forget" class="link-primary">Forget Password</a>
+
+
+      <button [disabled]="loginForm.invalid == true || isLoading" class="btn bg-main d-block my-3 text-light">
+        Login @if (isLoading == true) {
+        <span><i class="fas fa-spin fa-spinner"></i></span>
+        }
+</button>
+      </div>
+
+      @if( msgError ){
+      <p class="alert alert-danger text-center">{{ msgError }}</p>
+      }
+    </form>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+<section>
+  <h1 class="text-main my-3">Our Parteners</h1>
+
+  <div class="row">
+    @for (brand of allBrands  ; track brand._id){
+        <div class="col-md-3" [routerLink]="['/brandDetails' , brand._id]"   >
+            <div class="cr">
+                <img [src]="brand.image" class="w-100" alt="">
+                <h4 class="text-center text-main">{{brand.name}}</h4>
+                
+            </div>
+        </div>
+    }@empty{
+        <app-loader></app-loader>
+    }
+  </div>
+</section>

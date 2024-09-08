@@ -1,0 +1,123 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="home">
+      <img src="../assets/images/freshcart-logo.svg" alt="" />
+      <!-- <img src="../../../assets/images/jumla.png"  alt="" /> -->
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+
+        @if( showLinks == true){
+          <li class="nav-item">
+          <a class="nav-link" routerLinkActive="bg-main text-light rounded text-center" routerLink="home">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="bg-main text-light rounded text-center" routerLink="cart">Cart</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="bg-main text-light rounded text-center " routerLink="products">Products</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="bg-main text-light rounded text-center" routerLink="brands"
+            >Brands</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="bg-main text-light rounded text-center" routerLink="categories"
+            >Categories</a
+          >
+        </li>
+        }
+      </ul>
+
+      <!-- icons and login and register -->
+
+      
+          
+        
+
+      <ul class="navbar-nav ms-auto d-flex flex-lg-row flex-md-column flex-sm-column">
+
+
+        
+          @if( showLinks == false){
+            
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="bg-main text-light rounded text-center" routerLink="register">Register</a>
+            </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="bg-main text-light rounded text-center" routerLink="login">Login</a>
+          </li>
+          }
+        
+
+
+        <div class="d-flex align-items-center">
+          <li class="nav-item">
+          <a class="nav-link px-2">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-2">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-2">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-2">
+            <i class="fa-brands fa-twitter"></i>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-2">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link px-2">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+        </li>
+
+        @if(showLinks == true){
+          <li class="nav-item px-3">
+            <i class="fa-solid fa-user"></i>
+            {{loggedUserName}}
+        </li>
+          <li class="nav-item">
+          <a (click)="signOut()" class="nav-link px-2 cursor-pointer"> SignOut</a>
+        </li>
+        }
+        </div>
+
+        
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,62 @@
+<section class="bg-main-light rounded-4 my-2">
+
+    <div class="d-flex align-items-center justify-content-between p-4 mt-3 ">
+        <h2 class="text-main ">Shop Cart</h2>
+        <button class="btn btn-danger" (click)="clearAllCart()">Clear Cart </button>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center p-3">
+        <p class="fw-bold mx-4  text-main">Total Price : {{cartData.totalCartPrice}} EGP</p>
+        <p class="text-main text-center fw-bold ">Items in your cart : {{apiResponse}}</p>
+    </div>
+
+    
+    @for (item of cartData.products; track $index) {
+        
+        <div class="row align-items-center mb-1 border-bottom">
+        <div class="col-md-2">
+
+            <div >
+                <img [src]="item.product.imageCover" class="w-100 p-2" alt="">
+            </div>
+            
+        </div>
+
+
+
+        <div class="col-md-10">
+
+            <div class="d-flex justify-content-between">
+                
+                <div>
+                    <h3 class="h4">{{item.product.title}}</h3>
+                    <h6 class="text-main">Price : {{item.price}}</h6>
+
+                    <div class="d-flex cr" (click)="deleteItem(item.product.id)">
+                        <i class="fa-regular fa-trash-can px-2 fs-5 text-danger "></i>
+                        <p>Remove</p>
+                    </div>
+                </div>
+
+
+                <div class="d-flex align-items-center px-3">
+                    <span (click)="updateCount(item.product.id , item.count + 1)">
+                        <i class="fa-solid fa-plus  border rounded-3 bg-main text-light fs-4 p-1 cr"></i>
+                    </span> 
+                    <span class="mx-2 fs-4 fw-bold">{{item.count}}</span> 
+
+                    <span (click)="updateCount(item.product.id , item.count - 1)">
+                        <i class="fa-solid fa-minus bg-main text-light fs-4 border rounded-3 p-1 cr"></i>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    }@empty{
+        
+        <app-loader></app-loader>
+        
+    }
+</section>
