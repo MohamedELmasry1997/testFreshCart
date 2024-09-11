@@ -11,8 +11,10 @@ import { NotfoundComponent } from './components/notfound/notfound.component';
 import { pathGuard } from './path.guard';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
-import { BrandDetailsComponent } from './components/brand-details/brand-details.component';
+// import { BrandDetailsComponent } from './components/brand-details/brand-details.component';
 import { MyBrandDetailsComponent } from './components/my-brand-details/my-brand-details.component';
+import { AllordersComponent } from './components/allorders/allorders.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 
 export const routes: Routes = [
@@ -26,6 +28,8 @@ export const routes: Routes = [
   { path: 'products', component: ProductsComponent, canActivate: [pathGuard] },
   { path: 'brands', component: BrandsComponent, canActivate: [pathGuard] },
   { path: 'brandDetails/:id', component: MyBrandDetailsComponent, canActivate: [pathGuard] },
+  { path: 'allorders', component: AllordersComponent, canActivate: [pathGuard] },
+  { path: 'orders/:cartID', component: OrdersComponent, canActivate: [pathGuard] },
   
   
   {

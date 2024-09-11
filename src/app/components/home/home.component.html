@@ -78,9 +78,10 @@
 <!-- products -->
 <!-- Home content -->
 <section>
+    <input [(ngModel)]="searchText" type="search" class="form-control w-50 mx-auto my-3 rounded-5" placeholder="Search by Name......">
     <div class="container">
         <div class="row g-3 py-5">
-            @for (p of productList.slice( 28,42 )  ; track p._id) {
+            @for (p of productList.slice( 28,42 ) | search : searchText  ; track p._id) {
 
                 <div class="col-md-6 col-lg-4 col-xl-2 rounded ">
 
@@ -91,7 +92,7 @@
 
                     <h4 class="text-main fs-4">{{p.category.name}}</h4>
                     
-                    <h4 class="h6">{{ p.title.split(' ' , 2).join(' ') }}</h4>
+                    <h4 class="h6">{{ p.title | textcut }}</h4>
 
                     <div class="d-flex justify-content-between align-items-center py-2">
                         <span>{{p.price}} EGP</span>
@@ -108,9 +109,7 @@
                 </div>
             </div>
             }
-            @empty {
-                <app-loader></app-loader>
-            }
+            
             
         </div>
     </div>

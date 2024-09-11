@@ -56,7 +56,12 @@
     
     }@empty{
         
-        <app-loader></app-loader>
+        
+            
+                        <h6 class="text-main text-center"> your cart is empty <span routerLink="/products" class="link-primary cr">Continue Shopping <i class="fa-solid fa-angles-right"></i></span></h6>
+
+            
         
     }
+    <button [routerLink]="['/orders' ,cartData._id ]" class="btn-main mt-3">Orders</button>
 </section>

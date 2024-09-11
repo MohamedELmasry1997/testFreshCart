@@ -15,11 +15,22 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { TextcutPipe } from '../../core/pipes/textcut.pipe';
+import { SearchPipe } from '../../core/pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [LoaderComponent, CarouselModule, RouterLink],
+  imports: [
+    LoaderComponent,
+    CarouselModule,
+    RouterLink,
+    TextcutPipe,
+    SearchPipe,
+    FormsModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -30,8 +41,11 @@ export class HomeComponent {
     private _ProductsService: ProductsService,
     private _CategoreisService: CategoreisService,
     private _CartService: CartService,
-    private _ToastrService : ToastrService) {}
+    private _ToastrService: ToastrService,
+    private _NgxSpinnerService: NgxSpinnerService
+  ) {}
 
+  searchText: string = '';
   // owl-carousel options
 
   customOptionsCategory: OwlOptions = {
@@ -98,10 +112,12 @@ export class HomeComponent {
   // end static slider
 
   ngOnInit(): void {
+    
     this._CategoreisService.getAllCategoreis().subscribe({
       next: (res) => {
         console.log(res);
         this.categoryList = res.data;
+        
       },
       error: (err) => {
         console.log(err);
@@ -118,17 +134,19 @@ export class HomeComponent {
     });
   }
 
-
-  addCart(proID:string) {
+  addCart(proID: string) {
     this._CartService.addToCart(proID).subscribe({
       next: (res) => {
         console.log(res);
-        this._ToastrService.success(res.message)
+        this._ToastrService.success(res.message);
+        this._CartService.cartNum.next(res.numOfCartItems);
+        console.log(this._CartService.cartNum);
+        
+
       },
       error: (err) => {
         console.log(err);
-        
-      }
-    })
+      },
+    });
   }
 }

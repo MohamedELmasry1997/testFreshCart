@@ -8,11 +8,14 @@ import { ToastrService } from 'ngx-toastr';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { RouterLink } from '@angular/router';
 import { LoaderComponent } from '../../loader/loader.component';
+import { TextcutPipe } from '../../core/pipes/textcut.pipe';
+import { SearchPipe } from '../../core/pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CarouselModule , RouterLink , LoaderComponent],
+  imports: [CarouselModule, RouterLink, LoaderComponent, TextcutPipe , SearchPipe , FormsModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
@@ -25,6 +28,8 @@ export class ProductsComponent {
     private _CartService: CartService,
     private _ToastrService: ToastrService
   ) {}
+
+  searchText: string = '';
 
   // owl-carousel options
 
